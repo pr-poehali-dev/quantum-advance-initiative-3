@@ -7,7 +7,7 @@ const Index = () => {
 
   useEffect(() => {
     const observers: Record<string, IntersectionObserver> = {};
-    const sectionIds = ["hero", "features", "how", "pricing", "cta"];
+    const sectionIds = ["hero", "features", "how", "cta"];
 
     sectionIds.forEach((id) => {
       const element = document.getElementById(id);
@@ -49,9 +49,7 @@ const Index = () => {
             <a href="#how" className="text-muted-foreground hover:text-white transition-colors">
               Как это работает
             </a>
-            <a href="#pricing" className="text-muted-foreground hover:text-white transition-colors">
-              Тарифы
-            </a>
+
           </nav>
           <div className="flex gap-3">
             <button className="px-5 py-2.5 text-sm font-medium border border-accent/40 rounded-full hover:border-accent/70 hover:bg-accent/10 transition-all">
@@ -264,98 +262,6 @@ const Index = () => {
                   {i < 3 && (
                     <div className="hidden md:block absolute top-1/2 -right-3 w-6 h-0.5 bg-gradient-to-r from-accent/40 to-transparent" />
                   )}
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* Pricing */}
-      <section id="pricing" className="py-32 px-6 bg-accent/5">
-        <div className="max-w-5xl mx-auto">
-          <div
-            className={`text-center mb-20 transition-all duration-1000 ${visibleSections["pricing"] ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
-          >
-            <span className="text-xs font-medium tracking-widest text-accent/60 uppercase">Тарифы</span>
-            <h2 className="text-5xl lg:text-6xl font-display font-black tracking-tighter mt-4">
-              <span className="bg-gradient-to-r from-white via-white to-accent/40 bg-clip-text text-transparent">
-                Выберите свой путь
-              </span>
-            </h2>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-8">
-            {[
-              {
-                name: "Базовый",
-                price: "2 490 ₽/мес",
-                features: [
-                  "Все базовые модули по ИИ",
-                  "Интерактивные задачи и квизы",
-                  "Сертификат по завершении",
-                  "Доступ к сообществу",
-                ],
-                highlight: false,
-              },
-              {
-                name: "Профессионал",
-                price: "4 990 ₽/мес",
-                features: [
-                  "Всё из базового тарифа",
-                  "Живые вебинары с экспертами",
-                  "Проверка проектов куратором",
-                  "Карьерные консультации",
-                ],
-                highlight: true,
-              },
-            ].map((plan, i) => {
-              const isVisible = visibleSections["pricing"];
-              return (
-                <div
-                  key={i}
-                  className={`group relative transition-all duration-700 ${
-                    isVisible ? "opacity-100 scale-100" : "opacity-0 scale-95"
-                  } ${plan.highlight ? "md:scale-105" : ""}`}
-                  style={{ transitionDelay: `${i * 200}ms` }}
-                >
-                  {plan.highlight && (
-                    <div className="absolute -inset-1 bg-gradient-to-r from-accent via-accent to-accent/60 rounded-3xl opacity-20 blur-xl group-hover:opacity-30 transition" />
-                  )}
-                  <div
-                    className={`relative p-10 border rounded-2xl h-full flex flex-col justify-between backdrop-blur-sm transition-all ${
-                      plan.highlight ? "border-accent/40 bg-accent/10" : "border-accent/10 bg-card/50 hover:bg-card/80"
-                    }`}
-                  >
-                    <div>
-                      {plan.highlight && (
-                        <div className="mb-4">
-                          <span className="text-xs font-semibold tracking-widest text-black bg-accent px-3 py-1 rounded-full uppercase">
-                            Популярный
-                          </span>
-                        </div>
-                      )}
-                      <h3 className="font-display font-bold text-2xl mb-2">{plan.name}</h3>
-                      <p className="text-4xl font-black text-accent mb-8">{plan.price}</p>
-                      <ul className="space-y-4 mb-10">
-                        {plan.features.map((f, j) => (
-                          <li key={j} className="flex gap-3 text-sm items-start">
-                            <ArrowRight className="w-4 h-4 text-accent flex-shrink-0 mt-1" />
-                            <span className="text-foreground/80">{f}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                    <button
-                      className={`w-full px-6 py-4 rounded-xl font-semibold transition-all ${
-                        plan.highlight
-                          ? "bg-gradient-to-r from-accent to-accent/80 text-black hover:shadow-xl hover:shadow-accent/40"
-                          : "border border-accent/20 hover:border-accent/40 hover:bg-accent/5"
-                      }`}
-                    >
-                      {plan.highlight ? "Выбрать Профессионал" : "Попробовать бесплатно"}
-                    </button>
-                  </div>
                 </div>
               );
             })}
